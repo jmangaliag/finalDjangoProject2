@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+<form action="{% url 'posts:update' form.instance.id%}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card-content">
+        {% for field in form %}
+            {{ field.errors }}
+            {{ field.label }} {{ field }}
+        {% endfor %}
+    </div>
+    <div class="card-action">
+        <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+</form>
+</div>
+{% endblock %}

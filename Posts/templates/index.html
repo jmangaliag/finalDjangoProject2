@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+    {% if posts is not None %}
+        
+        <h3 class="center-align blue">Latest Posts</h3>
+    {% endif %}
+
+<ul class="collection">
+    {% for post in posts %}
+        <li class="collection-item">
+        <div class="card">
+            <div class="card-content">
+                {{post.content}}<img src="{{ post.content_image.url }}" height="420">
+            </div>
+        <div class="card-action">
+            {{post.date_posted}}
+
+            {%  if post.posted_by == request.user %}
+            <a href="{% url 'posts:update' post.id %}"><i class="material-icons">edit</i></a>
+
+            <a href="{% url 'posts:delete' post.id %}"><i class="material-icons">delete</i></a>
+            {% endif %}
+
+        </div>
+        </div>
+
+        </li>
+    {% endfor %}
+</ul>
+    <a href="{% url 'posts:post' %}"><button style="background-color: #2196F3"class="btn btn-outline-info" >Make a new post?</button></a>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'layout2.html' %}
+{% block login %}
+    {% if request.user.is_authenticated %}
+</br>   <a href="{% url 'logout' %}" ><button style="background-color: #2196F3" class="btn btn-outline-info" >Logout</button></a>
+        {% else %}
+</br><a href="{% url 'login' %}"><button style="background-color: #2196F3" class="btn btn-outline-info" >Login</button></a>
+        {% endif %}
+{% endblock %}

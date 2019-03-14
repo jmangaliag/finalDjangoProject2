@@ -1,0 +1,35 @@
+{% extends 'layout2.html' %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group" style="background-color:#2196f3; color:white">
+                <legend class="border-bottom mb-4" style="color:rgb(255, 255, 255); font-size: 12px; color:white">Login</legend>
+            {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+            </fieldset>
+          </br>
+            <div class="form-group">
+                <button style="background-color: #2196F3" class="btn btn-outline-info" type="submit">Sign In</button>
+            </div>
+        </form>
+    
+        <div class="border-top pt-3">
+            <small class="text-muted" style="color:aliceblue">
+                Want to Make an Account? <a class="ml-2" href="{% url 'posts:signup' %}">Sign Up</a>
+            </small>
+        </div>
+    </div>
+{% endblock %}
